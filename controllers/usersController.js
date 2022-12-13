@@ -1,7 +1,7 @@
 const { userModel } = require('../models');
 
 const addUser = (body) => {
-    const doc = new userModel (body);
+    const doc = new userModel(body);
     const query = { _id: doc._id};
     return userModel.findOneAndUpdate(query, doc, {
         upsert: true,
