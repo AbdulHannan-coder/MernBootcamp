@@ -44,11 +44,11 @@ router.delete('/:id', async function(req, res, next){
   }
 });
 
-router.put('/:username', async function(req, res, next){
-  const body = req.body;
-  console.log(body);
+router.put('/:id', async function(req, res, next){
+  const query = req.params.id;
+  console.log(query);
   try{
-    const result = await usersController.updateUser(body);
+    const result = await usersController.updateUser(query);
     res.status(200).send(result);
   }
   catch(error){

@@ -10,7 +10,8 @@ const addUser = (body) => {
 };
     
 const updateUser = (body) => {
-    const query = { username: body.username};
+    const query = { _id: body.id};
+    console.log(query);
     return userModel.findOneAndUpdate(query, body, {
         new: true
     });
