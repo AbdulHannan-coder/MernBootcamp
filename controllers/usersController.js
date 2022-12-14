@@ -10,14 +10,14 @@ const addUser = (body) => {
 };
     
 const updateUser = (body) => {
-    const query = { _id: body._id};
+    const query = { username: body.username};
     return userModel.findOneAndUpdate(query, body, {
         new: true
     });
 };
     
 const deleteUser = (filter) => {
-    return userModel.deleteOne(filter);
+    return userModel.findByIdAndDelete(filter);
 };
     
 const getAllUsers = (filter) => {

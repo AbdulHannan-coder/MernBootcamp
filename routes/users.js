@@ -32,4 +32,28 @@ router.post('/adduser', async function(req, res, next){
   }
 });
 
+router.delete('/:id', async function(req, res, next){
+  const query = req.params.id;
+  console.log(query)
+  try{
+    const result = await usersController.deleteUser(query);
+    res.status(200).send(result);
+  }
+  catch(error){
+    res.status(500).send(error);
+  }
+});
+
+router.put('/:username', async function(req, res, next){
+  const body = req.body;
+  console.log(body);
+  try{
+    const result = await usersController.updateUser(body);
+    res.status(200).send(result);
+  }
+  catch(error){
+    res.status(500).send(error);
+  }
+});
+
 module.exports = router;
