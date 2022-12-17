@@ -4,7 +4,7 @@ var { clientsController } = require('../controllers/clientController');
 
 
 /* GET users listing. */
-router.get('/clientList', async function(req, res, next){
+router.get('/clientsList', async function(req, res, next){
   const query = req.query;
   console.log(query);
   try{
@@ -33,7 +33,7 @@ router.delete('/:id', async function(req, res, next){
   console.log(id)
   try{
     const filter = { _id: id };
-    const result = await clientsController.delClient(filter);
+    const result = await clientsController.deleteClient(filter);
     res.status(200).send(result);
   }
   catch(error){
