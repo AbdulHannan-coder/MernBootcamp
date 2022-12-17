@@ -5,9 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
+// var indexRouter = require('./routes/index'); now it is acting as middleware 
+const {
+ userRoutes,
+ adminRoutes,
+ clientRoutes
+} = require('./routes');
+ 
 var app = express();
 
 mongoose.connect('mongodb://localhost:27017/my-db', (err) => {
@@ -27,8 +31,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/', indexRouter);
+app.use('/users', userRoutes);
+app.use('/admins', adminRoutes);
+app.use('/clients', clientRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

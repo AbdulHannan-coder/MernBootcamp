@@ -1,18 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var usersController = require('../controllers/usersController');
+var { adminsController } = require('../controllers/adminController');
+
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-
-router.get('/usersList', async function(req, res, next){
+router.get('/adminsList', async function(req, res, next){
   const query = req.query;
   console.log(query);
   try{
-    const result = await usersController.getAllUsers(query);
+    const result = await adminsController.getAllAdmins(query);
     res.status(200).send(result);
   }
   catch(error){
@@ -20,11 +16,11 @@ router.get('/usersList', async function(req, res, next){
   }
 });
 
-router.post('/adduser', async function(req, res, next){
+router.post('/addadmin', async function(req, res, next){
   const body = req.body;
   console.log(body);
   try{
-    const result = await usersController.addUser(body);
+    const result = await adminsController.addAdmin(body);
     res.status(200).send(result);
   }
   catch(error){
@@ -33,10 +29,11 @@ router.post('/adduser', async function(req, res, next){
 });
 
 router.delete('/:id', async function(req, res, next){
-  const query = req.params.id;
-  console.log(query)
+  const id = req.params.id;
+  console.log(id)
   try{
-    const result = await usersController.deleteUser(query);
+    const filter = { _id: id };
+    const result = await adminsController.delAdmin(filter);
     res.status(200).send(result);
   }
   catch(error){
@@ -44,11 +41,11 @@ router.delete('/:id', async function(req, res, next){
   }
 });
 
-router.put('/:username', async function(req, res, next){
+router.put('/', async function(req, res, next){
   const body = req.body;
   console.log(body);
   try{
-    const result = await usersController.updateUser(body);
+    const result = await adminsController.updateAdmin(body);
     res.status(200).send(result);
   }
   catch(error){
