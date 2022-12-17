@@ -45,7 +45,7 @@ router.delete('/:id', async function(req, res, next){
 });
 
 router.put('/:id', async function(req, res, next){
-  const query = req.params.id;
+  const query = req.body;
   console.log(query);
   try{
     const result = await usersController.updateUser(query);
