@@ -9,6 +9,6 @@ const adminSchema = new mongoose.Schema({
         type:String,
         required:true
     }
-},{collection: 'admin'});
+},{collection: 'admins'});
 
-module.exports = mongoose.model('admin',adminSchema);
+module.exports = mongoose.model('admins',adminSchema);
