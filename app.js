@@ -14,6 +14,8 @@ const {
  
 var app = express();
 
+const authMiddleware = require('./middlewares/authMiddleware');
+
 mongoose.connect('mongodb://localhost:27017/my-db', (err) => {
   if(err){
     return console.log('Error connecting with DB', err);
@@ -31,6 +33,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Actual Routes
+app.post('/signup', authMiddleware.userSignup);
+
+//Testing Routes
 // app.use('/', indexRouter);
 app.use('/users', userRoutes);
 app.use('/admins', adminRoutes);
