@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var { clientsController } = require('../controllers/clientController');
+var clientsController = require('../controllers/clientController');
 
 
 /* GET users listing. */
-router.get('/clientsList', async function(req, res, next){
+router.get('/clientslist', async function(req, res, next){
   const query = req.query;
   console.log(query);
   try{
